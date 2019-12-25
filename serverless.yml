@@ -11,14 +11,14 @@ provider:
   region: us-east-2
   iamRoleStatements:
     - Effect: "Allow"
-    - Action:
+      Action:
         - dynamodb:DescribeTable
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-    - Resource:
+      Resource:
         - "arn:aws:dynamodb:${self:provider.region}:*:table/${self:custom.settings.USERS_TABLE}"
   
 functions:
