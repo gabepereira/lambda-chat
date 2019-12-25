@@ -1,4 +1,4 @@
-service: flyfy-chat
+service: lambda-chat
 
 custom:
   settings:
@@ -12,6 +12,7 @@ provider:
   iamRoleStatements:
     - Effect: "Allow"
       Action:
+        - apigateway:POST
         - dynamodb:DescribeTable
         - dynamodb:Scan
         - dynamodb:GetItem
@@ -39,7 +40,7 @@ resources:
           AttributeType: "S"
         KeySchema:
         - AttributeName: "id"
-          AttributeType: "HASH"
+          KeyType: "HASH"
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
