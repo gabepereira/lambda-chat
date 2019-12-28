@@ -1,0 +1,8 @@
+{
+	"from": 1,
+	"to": 9,
+	"content": {
+        "message": "Hello Lambda!",
+        "file": null
+    }
+}
