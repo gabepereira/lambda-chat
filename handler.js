@@ -9,10 +9,9 @@ const response = (status, message) => ({
 });
 
 module.exports.createMessage = (event, context, callback) => {
-  const { chatId, from, to, content } = JSON.parse(event.body);
+  const { from, to, content } = JSON.parse(event.body);
 
   const message = {
-    chatId,
     from,
     to,
     content,
