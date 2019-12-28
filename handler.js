@@ -1,4 +1,3 @@
-const uuid = require('uuid/v1');
 const AWS = require('aws-sdk');
 const db = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
@@ -10,11 +9,13 @@ const response = (status, message) => ({
 });
 
 module.exports.createMessage = (event, context, callback) => {
-  const body = JSON.parse(event.body);
+  const { chatId, from, to, content } = JSON.parse(event.body);
 
   const message = {
-    id: uuid(),
-    message: body.message,
+    chatId,
+    from,
+    to,
+    content,
     createdAt: new Date().toISOString()
   }
 

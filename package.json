@@ -9,7 +9,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "uuid": "^3.3.3"
-  }
+  "dependencies": {}
 }
