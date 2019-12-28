@@ -9,7 +9,7 @@ const response = (status, message) => ({
   body: JSON.stringify(message)
 });
 
-module.exports.createMessage = (event, context, callback) => {
+module.exports.createMessage = async (event, _context, callback) => {
   const { from, to, content } = event;
 
   const message = {
@@ -20,11 +20,15 @@ module.exports.createMessage = (event, context, callback) => {
     createdAt: new Date().toISOString()
   }
 
-  return db.put({
-    TableName: usersTable,
-    Item: message
-  })
-    .promise()
-    .then(() => callback(null, response(201, message)))
-    .catch(error => response(null, response(error.statusCode, error)))
+  try {
+    await db.put({
+      TableName: usersTable,
+      Item: message
+    })
+      .promise();
+    return callback(null, response(201, message));
+  }
+  catch (error) {
+    return response(null, response(error.statusCode, error));
+  }
 }
