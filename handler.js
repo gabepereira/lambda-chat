@@ -10,13 +10,13 @@ const response = (status, message) => ({
 });
 
 module.exports.createMessage = async (event, _context, callback) => {
-  const { from, to, content } = event;
+  const data = JSON.parse(event.body);
 
   const message = {
     id: uuidv1(),
-    from,
-    to,
-    content,
+    from: data.from,
+    to: data.to,
+    content: data.content,
     createdAt: new Date().toISOString()
   }
 
